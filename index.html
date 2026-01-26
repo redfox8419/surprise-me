@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Surprise Me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+
+  <main class="shell" role="main">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="brand__title">surprise-me</span>
+      </div>
+      <div class="topbar__right">
+        <span class="chip" id="clock">--:--</span>
+        <button class="btn" id="btnFullscreen" type="button">Full screen</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>Good morning, Henry.</h1>
+      <p class="lede">
+        You asked for something <em>not rushed</em>. So I made you a tiny, self‑contained little world.
+        It’s equal parts calm, clever, and faintly ominous — like Britain.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <h2>Ambient console</h2>
+          <p>
+            A gentle status stream that feels like a terminal, without the stress.
+          </p>
+          <div class="console" id="console" aria-label="Ambient console output"></div>
+        </article>
+
+        <article class="card">
+          <h2>Constellation mode</h2>
+          <p>
+            Click to drop “beacons”. The system connects them and breathes.
+          </p>
+          <div class="kpis">
+            <div class="kpi"><div class="kpi__label">beacons</div><div class="kpi__value" id="kBeacon">0</div></div>
+            <div class="kpi"><div class="kpi__label">drift</div><div class="kpi__value" id="kDrift">low</div></div>
+            <div class="kpi"><div class="kpi__label">mood</div><div class="kpi__value" id="kMood">cosmic</div></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Little rituals</h2>
+          <p>
+            Breathe. Scroll less. Build more. If you must doomscroll, at least do it with taste.
+          </p>
+          <div class="actions">
+            <button class="btn btn--primary" id="btnBloom" type="button">Bloom</button>
+            <button class="btn" id="btnCalm" type="button">Calm it down</button>
+            <button class="btn" id="btnReset" type="button">Reset</button>
+          </div>
+        </article>
+      </div>
+
+      <footer class="footer">
+        <div class="footer__left">Built for one sleepy human, by one tireless goblin.</div>
+        <div class="footer__right">
+          <a class="link" href="https://github.com/redfox8419/surprise-me" target="_blank" rel="noreferrer">source</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
