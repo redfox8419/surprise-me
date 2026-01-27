@@ -1,5 +1,7 @@
-/* Surprise Me — a tiny self-contained mood machine.
-   Keep it pretty. Keep it light. Keep it slightly ominous.
+/* Clawdbot Control Centre — single-file static SPA
+   - Hash router with 4 views
+   - localStorage persistence for beacons, agents, automations, settings
+   - Background canvas visuals (performant)
 */
 
 const $ = (id) => document.getElementById(id);
@@ -7,29 +9,58 @@ const $ = (id) => document.getElementById(id);
 const canvas = $('bg');
 const ctx = canvas.getContext('2d', { alpha: true });
 
+// UI
 const consoleEl = $('console');
 const clockEl = $('clock');
 const btnFullscreen = $('btnFullscreen');
 const btnBloom = $('btnBloom');
 const btnCalm = $('btnCalm');
 const btnReset = $('btnReset');
-
 const kBeacon = $('kBeacon');
 const kDrift = $('kDrift');
 const kMood = $('kMood');
 
+const navLinks = Array.from(document.querySelectorAll('.navlink'));
+const views = Array.from(document.querySelectorAll('.view'));
+const pageTitle = $('pageTitle');
+
 let W = 0, H = 0, DPR = 1;
 let running = true;
 
-const state = {
+const storageKey = 'clawdbot:v1';
+
+const defaults = {
   beacons: [],
-  stars: [],
-  particles: [],
-  drift: 0.25,
   mood: 0.55,
-  lastTs: performance.now(),
-  reduced: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  drift: 0.25,
+  agents: [],
+  automations: [],
 };
+
+let state = Object.assign({}, defaults);
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(storageKey);
+    if(raw) state = Object.assign({}, defaults, JSON.parse(raw));
+  }catch(e){ console.warn('load error', e); }
+}
+function saveState(){
+  try{ localStorage.setItem(storageKey, JSON.stringify({
+    beacons: state.beacons,
+    mood: state.mood,
+    drift: state.drift,
+    agents: state.agents,
+    automations: state.automations
+  })); }catch(e){ console.warn('save error',e); }
+}
+
+loadState();
+
+state.stars = [];
+state.particles = [];
+state.lastTs = performance.now();
+state.reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function resize() {
   DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
@@ -48,7 +79,6 @@ function rand(a, b) { return a + Math.random() * (b - a); }
 function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
 
 function colour() {
-  // mint-cyan range
   const t = state.mood;
   const c1 = { r: 61, g: 252, b: 255 };
   const c2 = { r: 91, g: 255, b: 176 };
@@ -104,16 +134,15 @@ const phrases = [
 function tickConsole() {
   const [msg, lvl] = phrases[Math.floor(Math.random() * phrases.length)];
   addLog(msg, lvl);
-  // keep it light
-  if (consoleEl.children.length > 80) consoleEl.removeChild(consoleEl.firstChild);
+  if (consoleEl.children.length > 120) consoleEl.removeChild(consoleEl.firstChild);
 }
-
 addLog('Boot sequence: good morning.', 'ok');
 addLog('Status: pleasantly sinister.', 'info');
-setInterval(tickConsole, state.reduced ? 3500 : 2200);
+setInterval(tickConsole, state.reduced ? 3500 : 2400);
 
 function setKpis() {
-  kBeacon.textContent = String(state.beacons.length);
+  const beacons = state.beacons || [];
+  kBeacon.textContent = String(beacons.length);
   kDrift.textContent = state.drift < 0.18 ? 'low' : state.drift < 0.3 ? 'medium' : 'spicy';
   kMood.textContent = state.mood < 0.45 ? 'icy' : state.mood < 0.7 ? 'cosmic' : 'mint';
 }
@@ -133,29 +162,38 @@ function spawnBloom(x, y, strength = 1) {
   }
 }
 
-function addBeacon(x, y) {
+function addBeacon(x, y, persist = true) {
   state.beacons.push({ x, y, t: 0, phase: rand(0, Math.PI * 2) });
-  if (state.beacons.length > 9) state.beacons.shift();
+  if (state.beacons.length > 20) state.beacons.shift();
   spawnBloom(x, y, 0.9);
   setKpis();
   addLog(`Beacon dropped @ ${Math.round(x)},${Math.round(y)}`, 'ok');
+  if (persist) saveState();
+}
+
+// restore beacons from state
+if (state.beacons && state.beacons.length) {
+  for (const b of state.beacons) {
+    // nothing to do — they will render
+  }
 }
 
 window.addEventListener('pointerdown', (e) => {
+  // ignore clicks on UI elements
+  if (e.target.closest('.nav') || e.target.closest('.card') || e.target.closest('button') || e.target.closest('a') || e.target.closest('input')) return;
   addBeacon(e.clientX, e.clientY);
+  saveState();
 });
 
 function drawBackground(ts) {
   ctx.clearRect(0, 0, W, H);
 
-  // subtle gradient wash
   const g = ctx.createLinearGradient(0, 0, W, H);
   g.addColorStop(0, 'rgba(0,0,0,0.35)');
   g.addColorStop(1, 'rgba(0,0,0,0.60)');
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, W, H);
 
-  // stars
   for (const s of state.stars) {
     s.tw += s.sp;
     const a = 0.18 + 0.38 * (0.5 + 0.5 * Math.sin(s.tw));
@@ -165,11 +203,9 @@ function drawBackground(ts) {
     ctx.fill();
   }
 
-  // beacons + links
   const col = colour();
   for (const b of state.beacons) b.t += 0.016;
 
-  // links
   for (let i = 0; i < state.beacons.length; i++) {
     for (let j = i + 1; j < state.beacons.length; j++) {
       const a = state.beacons[i];
@@ -189,7 +225,6 @@ function drawBackground(ts) {
     }
   }
 
-  // nodes
   for (const b of state.beacons) {
     const pulse = 6 + 6 * (0.5 + 0.5 * Math.sin(ts * 0.002 + b.phase));
     ctx.beginPath();
@@ -210,7 +245,6 @@ function drawBackground(ts) {
     ctx.fill();
   }
 
-  // particles
   for (let i = state.particles.length - 1; i >= 0; i--) {
     const p = state.particles[i];
     p.x += p.vx;
@@ -227,7 +261,6 @@ function drawBackground(ts) {
     if (t >= 1) state.particles.splice(i, 1);
   }
 
-  // vignette
   const v = ctx.createRadialGradient(W * 0.5, H * 0.55, 40, W * 0.5, H * 0.55, Math.max(W, H) * 0.55);
   v.addColorStop(0, 'rgba(0,0,0,0)');
   v.addColorStop(1, 'rgba(0,0,0,0.65)');
@@ -242,10 +275,14 @@ function loop(ts) {
 }
 if (!state.reduced) requestAnimationFrame(loop);
 else {
-  // low-motion mode: draw at ~1fps
   let t = 0;
   setInterval(() => { t += 1000; drawBackground(t); }, 1000);
 }
+
+document.addEventListener('visibilitychange', () => {
+  running = !document.hidden;
+  if (running && !state.reduced) requestAnimationFrame(loop);
+});
 
 // controls
 btnBloom.addEventListener('click', () => {
@@ -254,6 +291,7 @@ btnBloom.addEventListener('click', () => {
   spawnBloom(W * 0.5, H * 0.38, 1.1);
   addLog('Bloom triggered. Reality slightly improved.', 'ok');
   setKpis();
+  saveState();
 });
 
 btnCalm.addEventListener('click', () => {
@@ -261,6 +299,7 @@ btnCalm.addEventListener('click', () => {
   state.drift = clamp(state.drift - 0.08, 0.05, 0.6);
   addLog('Calm mode engaged. Panic postponed.', 'info');
   setKpis();
+  saveState();
 });
 
 btnReset.addEventListener('click', () => {
@@ -269,6 +308,7 @@ btnReset.addEventListener('click', () => {
   seedStars();
   addLog('Reset. Fresh slate. Same universe.', 'warn');
   setKpis();
+  saveState();
 });
 
 function tickClock() {
@@ -285,7 +325,7 @@ async function toggleFullscreen() {
       addLog('Fullscreen engaged. No distractions.', 'ok');
     } else {
       await document.exitFullscreen();
-      btnFullscreen.textContent = 'Full screen';
+      btnFullscreen.textContent = 'Full';
       addLog('Fullscreen exited. Back to reality.', 'info');
     }
   } catch {
@@ -294,7 +334,144 @@ async function toggleFullscreen() {
 }
 btnFullscreen.addEventListener('click', toggleFullscreen);
 
-document.addEventListener('visibilitychange', () => {
-  running = !document.hidden;
-  if (running && !state.reduced) requestAnimationFrame(loop);
+// Router
+function routeTo(path){
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('data-route') === path));
+  views.forEach(v => v.classList.add('hidden'));
+  const id = path === '/' ? 'view-dashboard' : 'view-' + path.slice(1);
+  const el = $(id);
+  if(el) el.classList.remove('hidden');
+  pageTitle.textContent = ({'/':'Dashboard','/agents':'Agents','/automations':'Automations','/about':'About'})[path] || '';
+}
+
+function onHash(){
+  const h = location.hash.replace('#','') || '/';
+  routeTo(h);
+}
+window.addEventListener('hashchange', onHash);
+onHash();
+
+// Agents
+const agentForm = $('agentForm');
+const agentName = $('agentName');
+const agentRole = $('agentRole');
+const agentList = $('agentList');
+
+function renderAgents(){
+  agentList.innerHTML = '';
+  (state.agents||[]).forEach((a, idx)=>{
+    const li = document.createElement('li');
+    li.className = 'list__item';
+    li.innerHTML = `<div><strong>${a.name}</strong> <span class="muted">${a.role}</span></div><div class="list__actions"><button data-idx="${idx}" class="btn small rem">Remove</button></div>`;
+    agentList.appendChild(li);
+  });
+}
+
+agentForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const name = agentName.value.trim();
+  if(!name) return;
+  state.agents = state.agents || [];
+  state.agents.push({ name, role: agentRole.value, id: Date.now() });
+  agentName.value = '';
+  saveState();
+  renderAgents();
+  addLog(`Agent ${name} created.`, 'ok');
 });
+
+agentList.addEventListener('click', (e)=>{
+  if(e.target.matches('button.rem')){
+    const idx = Number(e.target.getAttribute('data-idx'));
+    const removed = state.agents.splice(idx,1)[0];
+    saveState(); renderAgents(); addLog(`Agent ${removed.name} removed.`, 'warn');
+  }
+});
+renderAgents();
+
+// Automations
+const automationForm = $('automationForm');
+const automationName = $('automationName');
+const automationType = $('automationType');
+const automationData = $('automationData');
+const automationList = $('automationList');
+
+function renderAutomations(){
+  automationList.innerHTML = '';
+  (state.automations||[]).forEach((a, idx)=>{
+    const li = document.createElement('li');
+    li.className = 'list__item';
+    li.innerHTML = `<div><strong>${a.name}</strong> <span class="muted">${a.type} ${a.data||''}</span></div><div class="list__actions"><button data-idx="${idx}" class="btn small rem">Remove</button></div>`;
+    automationList.appendChild(li);
+  });
+}
+
+automationForm.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const name = automationName.value.trim();
+  if(!name) return;
+  state.automations = state.automations || [];
+  state.automations.push({ name, type: automationType.value, data: automationData.value, id: Date.now() });
+  automationName.value = ''; automationData.value = '';
+  saveState(); renderAutomations(); addLog(`Automation ${name} created.`, 'ok');
+});
+
+automationList.addEventListener('click',(e)=>{
+  if(e.target.matches('button.rem')){
+    const idx = Number(e.target.getAttribute('data-idx'));
+    const removed = state.automations.splice(idx,1)[0];
+    saveState(); renderAutomations(); addLog(`Automation ${removed.name} removed.`, 'warn');
+  }
+});
+renderAutomations();
+
+// import/export
+$('importBtn').addEventListener('click', ()=>{
+  const raw = prompt('Paste JSON state to import');
+  if(!raw) return;
+  try{ const obj = JSON.parse(raw); state = Object.assign({}, defaults, obj); saveState(); seedStars(); renderAgents(); renderAutomations(); setKpis(); addLog('State imported.', 'ok'); }catch(e){ addLog('Import failed.', 'warn'); }
+});
+$('exportBtn').addEventListener('click', ()=>{ const out = JSON.stringify({beacons:state.beacons,agents:state.agents,automations:state.automations,mood:state.mood,drift:state.drift},null,2); navigator.clipboard.writeText(out); addLog('State copied to clipboard.', 'ok'); });
+
+// simple timed automation executor (demo)
+setInterval(()=>{
+  const now = Date.now();
+  for(const a of (state.automations||[])){
+    if(a.type==='timer' && a.data){
+      const m = a._last || 0;
+      // parse simple like '10s' or '1m'
+      const match = String(a.data).match(/^(\d+)(s|m)?$/);
+      if(match){
+        const val = Number(match[1]);
+        const unit = match[2]||'s';
+        const ms = unit==='m' ? val*60000 : val*1000;
+        if(!a._last || (now - a._last) > ms){
+          a._last = now;
+          addLog(`Automation ${a.name} fired (timer).`, 'ok');
+          // demo action: bloom
+          spawnBloom(W*0.5, H*0.5, 1.0);
+        }
+      }
+    }
+    if(a.type==='beacon'){
+      // demo: if there are any beacons, trigger once per 30s
+      if((state.beacons||[]).length && (!a._last || Date.now()-a._last>30000)){
+        a._last = Date.now(); addLog(`Automation ${a.name} fired (beacon).`, 'ok'); spawnBloom(rand(40,W-40), rand(40,H-40), 1.0);
+      }
+    }
+  }
+  saveState();
+}, 2500);
+
+// set initial UI
+setKpis();
+
+// small helpers
+function $(id){ return document.getElementById(id); }
+
+// expose for debugging
+window._claw = { state, saveState, addBeacon };
+
+// ensure stars match size
+window.addEventListener('resize', seedStars);
+
+console.log('Clawdbot loaded');
