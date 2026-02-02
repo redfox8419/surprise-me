@@ -125,6 +125,25 @@ a{color:var(--accent)}
   margin-top: 8px;
 }
 
+.answer-fields{
+  display: grid;
+  gap: 10px;
+  max-width: 740px;
+}
+
+.answer-fields__row{
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: start;
+  gap: 10px;
+}
+
+.answer-fields__label{
+  font-weight: 700;
+  line-height: 1.4;
+  padding-top: 6px;
+}
+
 .input-short{
   width: min(520px, 100%);
   border: 1px solid #000;

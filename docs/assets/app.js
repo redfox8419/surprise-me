@@ -16,6 +16,8 @@
   function setValue(id, value){ state[uid(id)] = value; save(); }
   function getValue(id, fallback=''){ return (state[uid(id)] ?? fallback); }
 
+  function fieldId(itemId, key){ return `${itemId}__${key}`; }
+
   function el(tag, attrs={}, children=[]){
     const n = document.createElement(tag);
     for (const [k,v] of Object.entries(attrs||{})){
@@ -46,6 +48,21 @@
     ta.value = getValue(id,'');
     ta.addEventListener('input', ()=> setValue(id, ta.value));
     return ta;
+  }
+
+  function renderAnswerFields(item){
+    const fields = item.answerFields;
+    if(!fields || !fields.length) return null;
+    const wrap = el('div',{class:'answer-fields'});
+    for(const f of fields){
+      const fid = fieldId(item.id, f.key);
+      const label = (f.label ? el('div',{class:'answer-fields__label', text: String(f.label)}) : null);
+      let input = null;
+      if(f.type==='text') input = shortInput(fid, f.placeholder || 'Type your answer…');
+      else input = longTextarea(fid, f.placeholder || 'Write your answer here…');
+      wrap.appendChild(el('div',{class:'answer-fields__row'},[label, input]));
+    }
+    return wrap;
   }
 
   function mcqSingle(id, options){
@@ -79,6 +96,18 @@
     return details;
   }
 
+  function inlineImagesPanel(images){
+    if(!images || !images.length) return null;
+    const wrap = el('div',{class:'inline-media'});
+    for(const im of images){
+      wrap.appendChild(el('figure',{class:'inline-media__figure'},[
+        el('img',{src:im.src, alt:im.alt || 'Diagram'}),
+        (im.caption ? el('figcaption',{class:'caption', text:im.caption}) : null)
+      ]));
+    }
+    return wrap;
+  }
+
   function renderItem(item){
     const marksText = (item.marks!==null && item.marks!==undefined) ? `(${item.marks})` : '';
 
@@ -90,9 +119,16 @@
     ]);
 
     const promptNodes = (item.prompt||[]).map(paragraph);
+    const inlineImages = inlineImagesPanel(item.inlineImages || []);
 
     let inputNode = null;
-    if(item.inputType==='mcq') inputNode = mcqSingle(item.id, item.options||[]);
+    let showAnswer = true;
+
+    const multi = renderAnswerFields(item);
+
+    if(item.inputType==='none' || item.inputType==='display'){
+      showAnswer = false;
+    } else if(item.inputType==='mcq') inputNode = mcqSingle(item.id, item.options||[]);
     else if(item.inputType==='text') inputNode = shortInput(item.id,'Type your answer…');
     else inputNode = longTextarea(item.id,'Write your answer here…');
 
@@ -100,8 +136,11 @@
       el('h2',{text: item.title || 'Question'}),
       el('div',{class:'q'},[
         head,
+        (inlineImages ? inlineImages : null),
         ...promptNodes,
-        el('div',{class:'answer'},[inputNode]),
+        (showAnswer ? el('div',{class:'answer'},[
+          (multi ? multi : inputNode)
+        ]) : null),
         sourcePagesPanel(item.sourcePages)
       ])
     ]);
