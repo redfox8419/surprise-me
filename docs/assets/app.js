@@ -1,300 +1,173 @@
-/* Surprise Me — a tiny self-contained mood machine.
-   Keep it pretty. Keep it light. Keep it slightly ominous.
+/* Interactive exam app (data-driven)
+   Jan 2021 4BI1/1B — Full paper
 */
+(function(){
+  const EXAM_JSON = 'assets/exam/jan2021_1b/exam.json';
+  const STORAGE_KEY = 'jan2021_4BI1_1B_answers_v1';
 
-const $ = (id) => document.getElementById(id);
+  /** @type {Record<string, any>} */
+  let state = {};
+  try{ state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') || {}; }catch(e){ state = {}; }
+  const save = ()=> localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 
-const canvas = $('bg');
-const ctx = canvas.getContext('2d', { alpha: true });
+  const $ = (sel)=> document.querySelector(sel);
 
-const consoleEl = $('console');
-const clockEl = $('clock');
-const btnFullscreen = $('btnFullscreen');
-const btnBloom = $('btnBloom');
-const btnCalm = $('btnCalm');
-const btnReset = $('btnReset');
+  function uid(id){ return `ans_${id}`; }
+  function setValue(id, value){ state[uid(id)] = value; save(); }
+  function getValue(id, fallback=''){ return (state[uid(id)] ?? fallback); }
 
-const kBeacon = $('kBeacon');
-const kDrift = $('kDrift');
-const kMood = $('kMood');
+  function el(tag, attrs={}, children=[]){
+    const n = document.createElement(tag);
+    for (const [k,v] of Object.entries(attrs||{})){
+      if(v === null || v === undefined || v === false) continue;
+      if(k==='class') n.className = v;
+      else if(k==='html') n.innerHTML = v;
+      else if(k==='text') n.textContent = v;
+      else if(k.startsWith('on') && typeof v==='function') n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k, v === true ? '' : String(v));
+    }
+    for (const c of (Array.isArray(children)?children:[children])) if(c) n.appendChild(c);
+    return n;
+  }
 
-let W = 0, H = 0, DPR = 1;
-let running = true;
+  function paragraph(text){
+    return el('p',{text});
+  }
 
-const state = {
-  beacons: [],
-  stars: [],
-  particles: [],
-  drift: 0.25,
-  mood: 0.55,
-  lastTs: performance.now(),
-  reduced: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-};
+  function shortInput(id, placeholder=''){
+    const input = el('input',{class:'input-short', type:'text', placeholder});
+    input.value = getValue(id,'');
+    input.addEventListener('input', ()=> setValue(id, input.value));
+    return input;
+  }
 
-function resize() {
-  DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-  W = Math.floor(window.innerWidth);
-  H = Math.floor(window.innerHeight);
-  canvas.width = Math.floor(W * DPR);
-  canvas.height = Math.floor(H * DPR);
-  canvas.style.width = W + 'px';
-  canvas.style.height = H + 'px';
-  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-}
-window.addEventListener('resize', resize);
-resize();
+  function longTextarea(id, placeholder=''){
+    const ta = el('textarea',{class:'text-long', placeholder});
+    ta.value = getValue(id,'');
+    ta.addEventListener('input', ()=> setValue(id, ta.value));
+    return ta;
+  }
 
-function rand(a, b) { return a + Math.random() * (b - a); }
-function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
+  function mcqSingle(id, options){
+    const group = uid(id);
+    const box = el('div',{class:'mcq'});
+    const current = getValue(id,'');
+    for(const opt of (options||[])){
+      const rid = `${group}_${opt.key}`;
+      const input = el('input',{type:'radio', name:group, id:rid, value:opt.key});
+      if(current===opt.key) input.checked = true;
+      input.addEventListener('change', ()=>{ if(input.checked) setValue(id, opt.key); });
+      const label = el('label',{for:rid, text:`${opt.key}  ${opt.text}`});
+      box.appendChild(el('div',{class:'choice'},[input,label]));
+    }
+    return box;
+  }
 
-function colour() {
-  // mint-cyan range
-  const t = state.mood;
-  const c1 = { r: 61, g: 252, b: 255 };
-  const c2 = { r: 91, g: 255, b: 176 };
-  const r = Math.round(c1.r * (1 - t) + c2.r * t);
-  const g = Math.round(c1.g * (1 - t) + c2.g * t);
-  const b = Math.round(c1.b * (1 - t) + c2.b * t);
-  return `rgb(${r},${g},${b})`;
-}
+  function sourcePagesPanel(sourcePages){
+    const details = el('details',{class:'sources'});
+    const summary = el('summary',{text:'View original exam pages (rendered)'});
+    const wrap = el('div',{class:'sources__pages'});
+    for(const p of (sourcePages||[])){
+      const n = String(p).padStart(2,'0');
+      wrap.appendChild(el('figure',{class:'source-page'},[
+        el('img',{src:`assets/exam/jan2021_1b/pages/page-${n}.png`, alt:`Exam page ${p}`} ),
+        el('figcaption',{class:'caption', text:`Page ${p}`}),
+      ]));
+    }
+    details.appendChild(summary);
+    details.appendChild(wrap);
+    return details;
+  }
 
-function seedStars() {
-  const n = state.reduced ? 60 : 140;
-  state.stars = Array.from({ length: n }, () => ({
-    x: Math.random() * W,
-    y: Math.random() * H,
-    r: rand(0.6, 2.0),
-    tw: rand(0, Math.PI * 2),
-    sp: rand(0.002, 0.016),
-  }));
-}
-seedStars();
+  function renderItem(item){
+    const marksText = (item.marks!==null && item.marks!==undefined) ? `(${item.marks})` : '';
 
-function addLog(msg, level = 'info') {
-  const row = document.createElement('div');
-  row.className = 'row';
+    const head = el('div',{class:'q__head'},[
+      el('div',{},[
+        el('div',{class:'q__num', text: item.label || item.title || ''}),
+      ]),
+      el('div',{class:'marks', text: marksText}),
+    ]);
 
-  const t = document.createElement('div');
-  t.className = 't';
-  t.textContent = new Date().toLocaleTimeString();
+    const promptNodes = (item.prompt||[]).map(paragraph);
 
-  const m = document.createElement('div');
-  m.className = 'm';
-  m.textContent = msg;
-  if (level === 'warn') m.classList.add('warn');
-  if (level === 'ok') m.classList.add('ok');
+    let inputNode = null;
+    if(item.inputType==='mcq') inputNode = mcqSingle(item.id, item.options||[]);
+    else if(item.inputType==='text') inputNode = shortInput(item.id,'Type your answer…');
+    else inputNode = longTextarea(item.id,'Write your answer here…');
 
-  row.appendChild(t);
-  row.appendChild(m);
-  consoleEl.appendChild(row);
-  consoleEl.scrollTop = consoleEl.scrollHeight;
-}
+    return el('div',{class:'paper'},[
+      el('h2',{text: item.title || 'Question'}),
+      el('div',{class:'q'},[
+        head,
+        ...promptNodes,
+        el('div',{class:'answer'},[inputNode]),
+        sourcePagesPanel(item.sourcePages)
+      ])
+    ]);
+  }
 
-const phrases = [
-  ['Handshake established', 'ok'],
-  ['Collecting small truths…', 'info'],
-  ['Staring into the void (politely)', 'info'],
-  ['Recalibrating optimism… failed', 'warn'],
-  ['Allocating vibes', 'ok'],
-  ['Spinning up imagination engine', 'ok'],
-  ['Suppressing chaos (best-effort)', 'info'],
-  ['Reality check: still reality', 'warn'],
-];
+  function updateProgress(idx, total){
+    const elProg = $('#progress');
+    if(elProg) elProg.textContent = `Item ${idx+1} / ${total}`;
+  }
 
-function tickConsole() {
-  const [msg, lvl] = phrases[Math.floor(Math.random() * phrases.length)];
-  addLog(msg, lvl);
-  // keep it light
-  if (consoleEl.children.length > 80) consoleEl.removeChild(consoleEl.firstChild);
-}
+  async function main(){
+    const res = await fetch(EXAM_JSON, {cache:'no-store'});
+    if(!res.ok) throw new Error(`Failed to load exam JSON (${res.status})`);
+    const exam = await res.json();
+    const items = exam.items || [];
 
-addLog('Boot sequence: good morning.', 'ok');
-addLog('Status: pleasantly sinister.', 'info');
-setInterval(tickConsole, state.reduced ? 3500 : 2200);
+    const host = $('#pageHost');
+    const btnPrev = $('#btnPrev');
+    const btnNext = $('#btnNext');
+    const btnPrint = $('#btnPrint');
+    const btnClear = $('#btnClear');
 
-function setKpis() {
-  kBeacon.textContent = String(state.beacons.length);
-  kDrift.textContent = state.drift < 0.18 ? 'low' : state.drift < 0.3 ? 'medium' : 'spicy';
-  kMood.textContent = state.mood < 0.45 ? 'icy' : state.mood < 0.7 ? 'cosmic' : 'mint';
-}
-setKpis();
+    let idx = 0;
 
-function spawnBloom(x, y, strength = 1) {
-  const n = state.reduced ? 30 : 70;
-  for (let i = 0; i < n; i++) {
-    state.particles.push({
-      x, y,
-      vx: rand(-2.2, 2.2) * strength,
-      vy: rand(-2.2, 2.2) * strength,
-      life: 0,
-      max: rand(26, 60),
-      r: rand(1.0, 2.8),
+    function render(){
+      host.innerHTML='';
+      host.appendChild(renderItem(items[idx]));
+      updateProgress(idx, items.length);
+      btnPrev.disabled = (idx<=0);
+      btnNext.disabled = (idx>=items.length-1);
+      window.scrollTo({top:0, behavior:'instant'});
+    }
+
+    btnPrev.addEventListener('click', ()=>{ if(idx>0){ idx--; render(); } });
+    btnNext.addEventListener('click', ()=>{ if(idx<items.length-1){ idx++; render(); } });
+    btnPrint.addEventListener('click', ()=> window.print());
+    btnClear.addEventListener('click', ()=>{
+      if(!confirm('Clear all saved answers for this paper?')) return;
+      state = {}; save(); render();
     });
-  }
-}
 
-function addBeacon(x, y) {
-  state.beacons.push({ x, y, t: 0, phase: rand(0, Math.PI * 2) });
-  if (state.beacons.length > 9) state.beacons.shift();
-  spawnBloom(x, y, 0.9);
-  setKpis();
-  addLog(`Beacon dropped @ ${Math.round(x)},${Math.round(y)}`, 'ok');
-}
-
-window.addEventListener('pointerdown', (e) => {
-  addBeacon(e.clientX, e.clientY);
-});
-
-function drawBackground(ts) {
-  ctx.clearRect(0, 0, W, H);
-
-  // subtle gradient wash
-  const g = ctx.createLinearGradient(0, 0, W, H);
-  g.addColorStop(0, 'rgba(0,0,0,0.35)');
-  g.addColorStop(1, 'rgba(0,0,0,0.60)');
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, W, H);
-
-  // stars
-  for (const s of state.stars) {
-    s.tw += s.sp;
-    const a = 0.18 + 0.38 * (0.5 + 0.5 * Math.sin(s.tw));
-    ctx.fillStyle = `rgba(255,255,255,${a})`;
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  // beacons + links
-  const col = colour();
-  for (const b of state.beacons) b.t += 0.016;
-
-  // links
-  for (let i = 0; i < state.beacons.length; i++) {
-    for (let j = i + 1; j < state.beacons.length; j++) {
-      const a = state.beacons[i];
-      const b = state.beacons[j];
-      const dx = a.x - b.x;
-      const dy = a.y - b.y;
-      const d = Math.hypot(dx, dy);
-      if (d < 520) {
-        const alpha = clamp(0.22 - d / 2600, 0, 0.22);
-        ctx.strokeStyle = `rgba(61,252,255,${alpha})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.stroke();
+    // deep-linking: #item=ID or #n=12
+    const hash = location.hash.replace('#','');
+    if(hash){
+      const m1 = hash.match(/item=([^&]+)/);
+      const m2 = hash.match(/n=(\d+)/);
+      if(m1){
+        const id = decodeURIComponent(m1[1]);
+        const found = items.findIndex(x=>x.id===id);
+        if(found>=0) idx=found;
+      } else if(m2){
+        const n = parseInt(m2[1],10);
+        if(Number.isFinite(n) && n>=1 && n<=items.length) idx=n-1;
       }
     }
+
+    render();
   }
 
-  // nodes
-  for (const b of state.beacons) {
-    const pulse = 6 + 6 * (0.5 + 0.5 * Math.sin(ts * 0.002 + b.phase));
-    ctx.beginPath();
-    ctx.fillStyle = 'rgba(0,0,0,0.55)';
-    ctx.arc(b.x, b.y, pulse + 4, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.fillStyle = col;
-    ctx.globalAlpha = 0.22;
-    ctx.arc(b.x, b.y, pulse + 10, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.globalAlpha = 1;
-
-    ctx.beginPath();
-    ctx.fillStyle = 'rgba(255,255,255,0.9)';
-    ctx.arc(b.x, b.y, 2.6, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  // particles
-  for (let i = state.particles.length - 1; i >= 0; i--) {
-    const p = state.particles[i];
-    p.x += p.vx;
-    p.y += p.vy;
-    p.vx *= 0.97;
-    p.vy *= 0.97;
-    p.life += 1;
-    const t = p.life / p.max;
-    const a = 1 - t;
-    ctx.fillStyle = `rgba(91,255,176,${0.6 * a})`;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fill();
-    if (t >= 1) state.particles.splice(i, 1);
-  }
-
-  // vignette
-  const v = ctx.createRadialGradient(W * 0.5, H * 0.55, 40, W * 0.5, H * 0.55, Math.max(W, H) * 0.55);
-  v.addColorStop(0, 'rgba(0,0,0,0)');
-  v.addColorStop(1, 'rgba(0,0,0,0.65)');
-  ctx.fillStyle = v;
-  ctx.fillRect(0, 0, W, H);
-}
-
-function loop(ts) {
-  if (!running) return;
-  drawBackground(ts);
-  requestAnimationFrame(loop);
-}
-if (!state.reduced) requestAnimationFrame(loop);
-else {
-  // low-motion mode: draw at ~1fps
-  let t = 0;
-  setInterval(() => { t += 1000; drawBackground(t); }, 1000);
-}
-
-// controls
-btnBloom.addEventListener('click', () => {
-  state.mood = clamp(state.mood + 0.12, 0.1, 0.95);
-  state.drift = clamp(state.drift + 0.05, 0.05, 0.6);
-  spawnBloom(W * 0.5, H * 0.38, 1.1);
-  addLog('Bloom triggered. Reality slightly improved.', 'ok');
-  setKpis();
-});
-
-btnCalm.addEventListener('click', () => {
-  state.mood = clamp(state.mood - 0.08, 0.1, 0.95);
-  state.drift = clamp(state.drift - 0.08, 0.05, 0.6);
-  addLog('Calm mode engaged. Panic postponed.', 'info');
-  setKpis();
-});
-
-btnReset.addEventListener('click', () => {
-  state.beacons = [];
-  state.particles = [];
-  seedStars();
-  addLog('Reset. Fresh slate. Same universe.', 'warn');
-  setKpis();
-});
-
-function tickClock() {
-  clockEl.textContent = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' }).format(new Date());
-}
-setInterval(tickClock, 500);
-tickClock();
-
-async function toggleFullscreen() {
-  try {
-    if (!document.fullscreenElement) {
-      await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
-      btnFullscreen.textContent = 'Exit';
-      addLog('Fullscreen engaged. No distractions.', 'ok');
-    } else {
-      await document.exitFullscreen();
-      btnFullscreen.textContent = 'Full screen';
-      addLog('Fullscreen exited. Back to reality.', 'info');
-    }
-  } catch {
-    addLog('Fullscreen blocked. Press F11 like it’s 2009.', 'warn');
-  }
-}
-btnFullscreen.addEventListener('click', toggleFullscreen);
-
-document.addEventListener('visibilitychange', () => {
-  running = !document.hidden;
-  if (running && !state.reduced) requestAnimationFrame(loop);
-});
+  main().catch(err=>{
+    const host = document.getElementById('pageHost');
+    if(host) host.appendChild(el('div',{class:'paper'},[
+      el('h2',{text:'Error'}),
+      el('p',{text:String(err)}),
+      el('p',{text:'If you are viewing locally, serve this folder via a web server (GitHub Pages is fine).'}),
+    ]));
+    console.error(err);
+  });
+})();

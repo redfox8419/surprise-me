@@ -1,0 +1,1258 @@
+{
+  "meta": {
+    "paper": "Jan 2021 4BI1/1B",
+    "totalPages": 28,
+    "totalMarks": 110
+  },
+  "items": [
+    {
+      "id": "Q1",
+      "label": "Q1",
+      "question": 1,
+      "title": "Question Q1",
+      "marks": null,
+      "prompt": [
+        "1 The diagram shows a human sperm cell. tail middle head piece acrosome nucleus"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "1a",
+      "label": "1a",
+      "question": 1,
+      "title": "Question 1a",
+      "marks": null,
+      "prompt": [
+        "(a) What is the maximum number of X chromosomes found in the nucleus of a sperm cell? (1) A 0 B 1 C 2 D 23"
+      ],
+      "inputType": "mcq",
+      "options": [
+        {
+          "key": "A",
+          "text": "0"
+        },
+        {
+          "key": "B",
+          "text": "1"
+        },
+        {
+          "key": "C",
+          "text": "2"
+        },
+        {
+          "key": "D",
+          "text": "23"
+        }
+      ],
+      "sourcePages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "1b",
+      "label": "1b",
+      "question": 1,
+      "title": "Question 1b",
+      "marks": 2,
+      "prompt": [
+        "(b) The middle piece of the sperm cell contains mitochondria. Explain the function of these mitochondria. (2)"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "1c",
+      "label": "1c",
+      "question": 1,
+      "title": "Question 1c",
+      "marks": null,
+      "prompt": [
+        "(c) The acrosome contains digestive enzymes. Suggest the function of the acrosome. (2) 2"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "1d",
+      "label": "1d",
+      "question": 1,
+      "title": "Question 1d",
+      "marks": null,
+      "prompt": [
+        "(d) Describe the route taken by a sperm cell from when it enters the woman\u2019s body to the site of fertilisation of the egg. (2) (Total for Question 1 = 7 marks) 3 *P67075RA0328* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "Q2",
+      "label": "Q2",
+      "question": 2,
+      "title": "Question Q2",
+      "marks": null,
+      "prompt": [
+        "2 The diagram shows a food chain from a lake. birds large fish small fish microscopic plants"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "2a",
+      "label": "2a",
+      "question": 2,
+      "title": "Question 2a",
+      "marks": 1,
+      "prompt": [
+        "(a) Name the primary consumer in this food chain. (1)"
+      ],
+      "inputType": "text",
+      "options": [],
+      "sourcePages": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "2b",
+      "label": "2b",
+      "question": 2,
+      "title": "Question 2b",
+      "marks": null,
+      "prompt": [
+        "(b) The microscopic plants convert light energy into chemical energy."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "2i",
+      "label": "2i",
+      "question": 2,
+      "title": "Question 2i",
+      "marks": 3,
+      "prompt": [
+        "(i) Describe the process that converts light energy into chemical energy. (3)"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "2i_ii",
+      "label": "2i(ii)",
+      "question": 2,
+      "title": "Question 2i(ii)",
+      "marks": null,
+      "prompt": [
+        "(ii) Give two reasons why some of the energy in the microscopic plants is not transferred to the small fish. (2) 1 .......................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ........................................................................................................................................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 .......................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ........................................................................................................................................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "2c",
+      "label": "2c",
+      "question": 2,
+      "title": "Question 2c",
+      "marks": null,
+      "prompt": [
+        "(c) The birds do not have teeth. The fish they eat is initially crushed in part of their digestive system called a gizzard. Suggest why crushing the fish in the gizzard helps the birds to digest the fish. (2) (Total for Question 2 = 8 marks) 5 *P67075RA0528* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "Q3",
+      "label": "Q3",
+      "question": 3,
+      "title": "Question Q3",
+      "marks": null,
+      "prompt": [
+        "3 The diagram shows the human circulation system with some blood vessels labelled A to J. The arrows show the direction of blood flow. lungs A J B I heart C H liver G D gut F E kidneys legs"
+      ],
+      "inputType": "mcq",
+      "options": [
+        {
+          "key": "A",
+          "text": "to J. The arrows show the direction of blood flow."
+        }
+      ],
+      "sourcePages": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "3a",
+      "label": "3a",
+      "question": 3,
+      "title": "Question 3a",
+      "marks": null,
+      "prompt": [
+        "(a) The table gives some statements about the content of blood vessels in this circulation system."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "3i",
+      "label": "3i",
+      "question": 3,
+      "title": "Question 3i",
+      "marks": null,
+      "prompt": [
+        "(i) Complete the table by giving the letter of the blood vessel that matches each statement. (5) Statement Letter contains the least carbon dioxide contains the most glucose after a meal contains the least oxygen contains the least urea contains blood at the highest pressure"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "3i_ii",
+      "label": "3i(ii)",
+      "question": 3,
+      "title": "Question 3i(ii)",
+      "marks": null,
+      "prompt": [
+        "(ii) State two ways in which the structure of blood vessel A differs from the structure of blood vessel J. (2) 1 .......................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ........................................................................................................................................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 .......................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ........................................................................................................................................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "3b",
+      "label": "3b",
+      "question": 3,
+      "title": "Question 3b",
+      "marks": null,
+      "prompt": [
+        "(b) Muscles in the legs contain capillaries. A scientist investigates how long\u2011term training affects the number of capillaries in an athlete\u2019s leg muscles. The scientist determines the mean number of capillaries per mm2 in samples of leg muscle from the athlete before and after a period of training. The table shows the scientist\u2019s results. Mean number of Muscle sample capillaries per mm2 before training 313 after training 349 The scientist concludes that training improves the athletic performance. Discuss this conclusion. (5) (Total for Question 3 = 12 marks) 7 *P67075RA0728* Turn over"
+      ],
+      "inputType": "mcq",
+      "options": [
+        {
+          "key": "A",
+          "text": "scientist investigates how long\u2011term training affects the number of capillaries in"
+        }
+      ],
+      "sourcePages": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "Q4",
+      "label": "Q4",
+      "question": 4,
+      "title": "Question Q4",
+      "marks": null,
+      "prompt": [
+        "4 (a) The table gives some examples of biological processes. Complete the table by giving the name of each process. The first one has been done for you. (3) Example of process Name of process plants with a short growing season survive drought natural selection growth of algae in rivers polluted by fertiliser pollen transferred from one plant to another by an insect absorption of nitrate ions from soil using ATP"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "4b",
+      "label": "4b",
+      "question": 4,
+      "title": "Question 4b",
+      "marks": null,
+      "prompt": [
+        "(b) Zinc is poisonous to many plants and can affect natural selection. A scientist investigates the ability of one grass species to survive at different distances from a zinc mine. The scientist uses a sampling method to measure the percentage cover of this grass species at different distances from the zinc mine. The graph shows the scientist\u2019s results. 100 80 60 Percentage cover (%) 40 20 0 0 50 100 150 200 Distance from mine in metres 8"
+      ],
+      "inputType": "mcq",
+      "options": [
+        {
+          "key": "A",
+          "text": "scientist investigates the ability of one grass species to survive at different"
+        }
+      ],
+      "sourcePages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "4i",
+      "label": "4i",
+      "question": 4,
+      "title": "Question 4i",
+      "marks": 4,
+      "prompt": [
+        "(i) The zinc concentration in soil is higher near the zinc mine than it is further from the zinc mine. Explain how natural selection could be responsible for the results shown in the graph between 0 and 100 metres. (4)"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "4i_ii",
+      "label": "4i(ii)",
+      "question": 4,
+      "title": "Question 4i(ii)",
+      "marks": null,
+      "prompt": [
+        "(ii) Describe a method the scientist could use to compare the population size of the grass species at 50 metres and 100 metres from the mine. (4) (Total for Question 4 = 11 marks) 9 *P67075RA0928* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "Q5",
+      "label": "Q5",
+      "question": 5,
+      "title": "Question Q5",
+      "marks": null,
+      "prompt": [
+        "5 Farmers can keep their animals indoors or outdoors. A student uses this apparatus to compare the heat loss from animals kept indoors and outdoors. He uses a covered beaker to represent animals indoors and an uncovered beaker to represent animals outdoors. indoors outdoors thermometer cardboard box beaker containing hot water This is the student\u2019s method. \u2022 pour 200 cm3 of hot water into each beaker \u2022 measure the temperature of the water in each beaker \u2022 cover one beaker with a cardboard box \u2022 measure the temperature of the water in each beaker after 30 minutes The student repeats the investigation six times and calculates the mean temperature of the water for each beaker. The table shows the student\u2019s results. Mean temperature of water in \u00b0C Time in minutes uncovered covered 0 80 80 30 40 44"
+      ],
+      "inputType": "mcq",
+      "options": [
+        {
+          "key": "A",
+          "text": "student uses this apparatus to compare the heat loss from animals kept indoors"
+        }
+      ],
+      "sourcePages": [
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "5a",
+      "label": "5a",
+      "question": 5,
+      "title": "Question 5a",
+      "marks": 1,
+      "prompt": [
+        "(a) Give the dependent variable in this investigation. (1)"
+      ],
+      "inputType": "text",
+      "options": [],
+      "sourcePages": [
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "5b",
+      "label": "5b",
+      "question": 5,
+      "title": "Question 5b",
+      "marks": null,
+      "prompt": [
+        "(b) Give one reason why the student uses the same volume of water in each beaker. (1) 10"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "5c",
+      "label": "5c",
+      "question": 5,
+      "title": "Question 5c",
+      "marks": null,
+      "prompt": [
+        "(c) Calculate the difference between the percentage decrease in temperature for the uncovered beaker and the percentage decrease in temperature for the covered beaker. (2) difference = .............................. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . %"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "5d",
+      "label": "5d",
+      "question": 5,
+      "title": "Question 5d",
+      "marks": null,
+      "prompt": [
+        "(d) The student concludes that it is better for farmers to keep their animals indoors. Discuss this conclusion. (4) 11 *P67075RA01128* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "5e",
+      "label": "5e",
+      "question": 5,
+      "title": "Question 5e",
+      "marks": null,
+      "prompt": [
+        "(e) Describe how the student could modify his investigation to find out if an animal\u2019s body size affects heat loss. (2) (Total for Question 5 = 10 marks) 12"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "Q6",
+      "label": "Q6",
+      "question": 6,
+      "title": "Question Q6",
+      "marks": null,
+      "prompt": [
+        "6 Neurones transmit nerve impulses. The diagram shows a neurone. dendrite nucleus axon axon terminal"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "6a",
+      "label": "6a",
+      "question": 6,
+      "title": "Question 6a",
+      "marks": null,
+      "prompt": [
+        "(a) This neurone is involved in the withdrawal reflex of a finger from a hot object. The neurone transmits electrical impulses from the central nervous system to the effector."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "6i",
+      "label": "6i",
+      "question": 6,
+      "title": "Question 6i",
+      "marks": 1,
+      "prompt": [
+        "(i) Draw a circle on the diagram to show the part of the neurone where the impulses are transferred to the effector. (1)"
+      ],
+      "inputType": "text",
+      "options": [],
+      "sourcePages": [
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "6i_ii",
+      "label": "6i(ii)",
+      "question": 6,
+      "title": "Question 6i(ii)",
+      "marks": null,
+      "prompt": [
+        "(ii) What is the name of this type of neurone? (1) A association B motor C relay D sensory"
+      ],
+      "inputType": "mcq",
+      "options": [
+        {
+          "key": "A",
+          "text": "association"
+        },
+        {
+          "key": "B",
+          "text": "motor"
+        },
+        {
+          "key": "C",
+          "text": "relay"
+        },
+        {
+          "key": "D",
+          "text": "sensory"
+        }
+      ],
+      "sourcePages": [
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "6i_ii_iii",
+      "label": "6i(ii)(iii)",
+      "question": 6,
+      "title": "Question 6i(ii)(iii)",
+      "marks": null,
+      "prompt": [
+        "(iii) Explain the advantage of a withdrawal reflex when a finger touches a hot object. (2) 13 *P67075RA01328* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "6b",
+      "label": "6b",
+      "question": 6,
+      "title": "Question 6b",
+      "marks": null,
+      "prompt": [
+        "(b) Some neurones do not have a myelin sheath. A scientist investigates the impulse speed for neurones with different diameters. She does this for neurones with a myelin sheath and neurones without a myelin sheath. The graph shows the scientist\u2019s results. 8 myelin sheath 6 Impulse speed 4 in m per s no myelin sheath 2 0 0 1 2 3 4 Diameter of neurone in \u03bcm"
+      ],
+      "inputType": "mcq",
+      "options": [
+        {
+          "key": "A",
+          "text": "scientist investigates the impulse speed for neurones with different diameters."
+        }
+      ],
+      "sourcePages": [
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "6i",
+      "label": "6i",
+      "question": 6,
+      "title": "Question 6i",
+      "marks": null,
+      "prompt": [
+        "(i) Which conclusion is supported by the graph? (1) A impulses are always faster in neurones with a myelin sheath B neurones always have a myelin sheath C wider neurones have a myelin sheath D wider neurones have faster impulses"
+      ],
+      "inputType": "mcq",
+      "options": [
+        {
+          "key": "A",
+          "text": "impulses are always faster in neurones with a myelin sheath"
+        },
+        {
+          "key": "B",
+          "text": "neurones always have a myelin sheath"
+        },
+        {
+          "key": "C",
+          "text": "wider neurones have a myelin sheath"
+        },
+        {
+          "key": "D",
+          "text": "wider neurones have faster impulses"
+        }
+      ],
+      "sourcePages": [
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "6i_ii",
+      "label": "6i(ii)",
+      "question": 6,
+      "title": "Question 6i(ii)",
+      "marks": null,
+      "prompt": [
+        "(ii) A neurone with a myelin sheath has a diameter of 1.0 \u00b5m. Use the graph to determine the speed of an impulse in this neurone. (1) speed = ............................................... . . . . . . . . . . . . . . . m per s 14"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "6i_ii_iii",
+      "label": "6i(ii)(iii)",
+      "question": 6,
+      "title": "Question 6i(ii)(iii)",
+      "marks": null,
+      "prompt": [
+        "(iii) The neurone is 90 cm long. Calculate the time taken for an impulse to travel along this neurone. Give your answer in standard form. (3) time = ............................. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s (Total for Question 6 = 9 marks) 15 *P67075RA01528* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "Q7",
+      "label": "Q7",
+      "question": 7,
+      "title": "Question Q7",
+      "marks": null,
+      "prompt": [
+        "7 Scientists investigate the effect of salt (NaCl) concentration on the germination of maize seeds. Batches of seeds are watered with different concentrations of salt solution. They count the number of seeds that germinate in each batch 12 days after sowing. They then determined the percentage germination."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": "7a",
+      "label": "7a",
+      "question": 7,
+      "title": "Question 7a",
+      "marks": 1,
+      "prompt": [
+        "(a) (i) Describe how the scientists could tell if a maize seed had germinated. (1)"
+      ],
+      "inputType": "text",
+      "options": [],
+      "sourcePages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": "7a_ii",
+      "label": "7a(ii)",
+      "question": 7,
+      "title": "Question 7a(ii)",
+      "marks": null,
+      "prompt": [
+        "(ii) The scientists measured the germination after 12 days. State two other abiotic variables that the scientists need to control in their investigation. (2) 1 ............................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 ............................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": "7b",
+      "label": "7b",
+      "question": 7,
+      "title": "Question 7b",
+      "marks": null,
+      "prompt": [
+        "(b) The table shows the scientists\u2019 results. Concentration of salt solution Percentage germination in mmol (%) 0 89 20 83 40 81 80 73 120 68 160 55 200 52 240 49 280 43 320 38 16"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": "7i",
+      "label": "7i",
+      "question": 7,
+      "title": "Question 7i",
+      "marks": 5,
+      "prompt": [
+        "(i) Plot a line graph to show the effect of concentration of salt solution on germination. Use a ruler to join your points with straight lines. (5)"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": "7i_ii",
+      "label": "7i(ii)",
+      "question": 7,
+      "title": "Question 7i(ii)",
+      "marks": null,
+      "prompt": [
+        "(ii) Explain the effect of increasing the concentration of salt solution on germination. (4) 17 *P67075RA01728* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": "7c",
+      "label": "7c",
+      "question": 7,
+      "title": "Question 7c",
+      "marks": null,
+      "prompt": [
+        "(c) As plants grow, they produce roots and stems."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": "7i",
+      "label": "7i",
+      "question": 7,
+      "title": "Question 7i",
+      "marks": 2,
+      "prompt": [
+        "(i) Compare the responses of roots and stems to gravity. (2)"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": "7i_ii",
+      "label": "7i(ii)",
+      "question": 7,
+      "title": "Question 7i(ii)",
+      "marks": null,
+      "prompt": [
+        "(ii) Compare the responses of roots and stems to light. (2) (Total for Question 7 = 16 marks) 18 BLANK PAGE 19 *P67075RA01928* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": "Q8",
+      "label": "Q8",
+      "question": 8,
+      "title": "Question Q8",
+      "marks": null,
+      "prompt": [
+        "8 The table shows data on crops grown and pesticide used in Norway in 2011. Total Percentage of area sprayed with Crop type Crop area each type of pesticide (%) in km2 herbicide fungicide insecticide potato 128 92 88 40 vegetable onion 7 99 96 26 carrot 13 93 42 73 strawberry 14 72 87 80 fruit apple 13 56 80 70 meadows meadows for mowing and pastures 6207 6 \u2013 \u2013 barley 1450 91 64 10 oats 694 94 24 4 cereals spring wheat 588 98 86 27 winter wheat 139 96 85 7"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        20,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "8a",
+      "label": "8a",
+      "question": 8,
+      "title": "Question 8a",
+      "marks": 1,
+      "prompt": [
+        "(a) State what is meant by the term pesticide. (1)"
+      ],
+      "inputType": "text",
+      "options": [],
+      "sourcePages": [
+        20,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "8b",
+      "label": "8b",
+      "question": 8,
+      "title": "Question 8b",
+      "marks": null,
+      "prompt": [
+        "(b) Determine which crop had the largest area sprayed with herbicide. Show your working. (2) largest area = .................................... . . . . . . . . . . . . . . . . . . . . . . . . . . km2 crop = ......................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        20,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "8c",
+      "label": "8c",
+      "question": 8,
+      "title": "Question 8c",
+      "marks": 2,
+      "prompt": [
+        "(c) Suggest why spring and winter wheat have different percentages of insecticide applied to them. (2)"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        20,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "8d",
+      "label": "8d",
+      "question": 8,
+      "title": "Question 8d",
+      "marks": 4,
+      "prompt": [
+        "(d) Discuss the different combinations of pesticides applied to fruit and cereal crops. (4)"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        20,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "8e",
+      "label": "8e",
+      "question": 8,
+      "title": "Question 8e",
+      "marks": null,
+      "prompt": [
+        "(e) Explain an alternative to insecticide that a farmer could use. (2) (Total for Question 8 = 11 marks) 21 *P67075RA02128* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        20,
+        21,
+        22
+      ]
+    },
+    {
+      "id": "Q9",
+      "label": "Q9",
+      "question": 9,
+      "title": "Question Q9",
+      "marks": null,
+      "prompt": [
+        "9 Sickle cell anaemia is a condition in which some of the person\u2019s red blood cells develop abnormally. The diagram shows red blood cells from a healthy person and red blood cells from a person with sickle cell anaemia. cells from a healthy person cells from a person with sickle cell anaemia (Source: \u00a9 solar22/Shutterstock)"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": "9a",
+      "label": "9a",
+      "question": 9,
+      "title": "Question 9a",
+      "marks": null,
+      "prompt": [
+        "(a) A person with sickle cell anaemia often suffers pain as some of their blood vessels become blocked by the sickle cells."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": "9i",
+      "label": "9i",
+      "question": 9,
+      "title": "Question 9i",
+      "marks": 1,
+      "prompt": [
+        "(i) Suggest why the person\u2019s blood vessels may become blocked. (1)"
+      ],
+      "inputType": "text",
+      "options": [],
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": "9i_ii",
+      "label": "9i(ii)",
+      "question": 9,
+      "title": "Question 9i(ii)",
+      "marks": null,
+      "prompt": [
+        "(ii) People with sickle cell anaemia have symptoms of tiredness and joint pain that get worse if they are exposed to cold temperatures and high altitudes. Suggest why these symptoms get worse. (3) 22"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": "9b",
+      "label": "9b",
+      "question": 9,
+      "title": "Question 9b",
+      "marks": null,
+      "prompt": [
+        "(b) Sickle cell anaemia is caused by a single recessive allele."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": "9i",
+      "label": "9i",
+      "question": 9,
+      "title": "Question 9i",
+      "marks": null,
+      "prompt": [
+        "(i) State what is meant by the term recessive. (1) ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ........................................................................................................................................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ........................................................................................................................................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": "9i_ii",
+      "label": "9i(ii)",
+      "question": 9,
+      "title": "Question 9i(ii)",
+      "marks": null,
+      "prompt": [
+        "(ii) A man and a woman who are both heterozygous for the sickle cell allele have a child. Calculate the probability that the child will be female and not have sickle cell anaemia. (2) probability = ......................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": "9c",
+      "label": "9c",
+      "question": 9,
+      "title": "Question 9c",
+      "marks": null,
+      "prompt": [
+        "(c) Sickle cell anaemia is more common in countries where malaria is found. This is because having an allele for sickle cell anaemia can reduce the likelihood of developing malaria. Which type of organism causes malaria? (1) A bacterium B fungus C plant D protoctist"
+      ],
+      "inputType": "mcq",
+      "options": [
+        {
+          "key": "A",
+          "text": "bacterium"
+        },
+        {
+          "key": "B",
+          "text": "fungus"
+        },
+        {
+          "key": "C",
+          "text": "plant"
+        },
+        {
+          "key": "D",
+          "text": "protoctist"
+        }
+      ],
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": "9d",
+      "label": "9d",
+      "question": 9,
+      "title": "Question 9d",
+      "marks": null,
+      "prompt": [
+        "(d) What is the name of the pigment found in red blood cells? (1) A chlorophyll B haemoglobin C iron D magnesium 23 *P67075RA02328* Turn over"
+      ],
+      "inputType": "mcq",
+      "options": [
+        {
+          "key": "A",
+          "text": "chlorophyll"
+        },
+        {
+          "key": "B",
+          "text": "haemoglobin"
+        },
+        {
+          "key": "C",
+          "text": "iron"
+        },
+        {
+          "key": "D",
+          "text": "magnesium"
+        }
+      ],
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": "9e",
+      "label": "9e",
+      "question": 9,
+      "title": "Question 9e",
+      "marks": null,
+      "prompt": [
+        "(e) Give two differences in structure between red blood cells and white blood cells. (2) 1 ............................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2 ............................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . (Total for Question 9 = 11 marks) 24 BLANK PAGE 25 *P67075RA02528* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": "Q10",
+      "label": "Q10",
+      "question": 10,
+      "title": "Question Q10",
+      "marks": null,
+      "prompt": [
+        "10 Substances can move into and out of cells by a variety of mechanisms."
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        26,
+        27,
+        28
+      ]
+    },
+    {
+      "id": "10a",
+      "label": "10a",
+      "question": 10,
+      "title": "Question 10a",
+      "marks": null,
+      "prompt": [
+        "(a) Explain the factors that affect the rate of movement of substances into and out of cells. (5) 26"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        26,
+        27,
+        28
+      ]
+    },
+    {
+      "id": "10b",
+      "label": "10b",
+      "question": 10,
+      "title": "Question 10b",
+      "marks": null,
+      "prompt": [
+        "(b) Describe the differences between diffusion and active transport. (4) ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ............................................................................................................................................ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . (Total for Question 10 = 9 marks) 27 *P67075RA02728* Turn over"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        26,
+        27,
+        28
+      ]
+    },
+    {
+      "id": "Q11",
+      "label": "Q11",
+      "question": 11,
+      "title": "Question Q11",
+      "marks": null,
+      "prompt": [
+        "11 Bread can be produced from flour using yeast. Design an investigation to find out if changing the starch content of the flour causes the bread to expand more. Your answer should include experimental details and be written in full sentences. (6) (Total for Question 11 = 6 marks) TOTAL FOR PAPER = 110 MARKS 28"
+      ],
+      "inputType": "textarea",
+      "options": [],
+      "sourcePages": [
+        28
+      ]
+    }
+  ]
+}
